@@ -194,7 +194,7 @@ function runAnalysis() {
   };
 
   sessionStorage.setItem('nobsCheckerResults', JSON.stringify(results));
-  window.location.href = '/ga4-checker/results';
+  window.location.href = '/ecommerce-data-audit/results';
 }
 
 updateRunBtn();
