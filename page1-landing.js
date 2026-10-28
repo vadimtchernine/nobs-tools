@@ -9,9 +9,9 @@ var modalHTML = '<div id="nobs-modal-box" style="background:#f4f7ff;border-radiu
   + '</div>'
   + '<div style="padding:22px;">'
   + '<div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px;flex-wrap:wrap;gap:10px;">'
-  + '<div><div style="font-size:11px;font-weight:700;color:#3d5278;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:4px;">Demo Store, Mar 2026</div><div style="font-size:16px;font-weight:700;color:#0a1628;">GA4 data trust report</div></div>'
+  + '<div><div style="font-size:11px;font-weight:700;color:#3d5278;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:4px;">Demo Store, Mar 2026</div><div style="font-size:16px;font-weight:700;color:#0a1628;">GA4 ecommerce check</div></div>'
   + '<div style="display:inline-flex;background:white;border-radius:999px;padding:3px;border:1px solid rgba(26,110,245,0.2);">'
-  + '<button id="nobs-btn-grade" onclick="nobsToggle(\'grade\')" style="font-size:11px;font-weight:700;padding:5px 14px;border-radius:999px;border:none;background:#1a6ef5;color:white;cursor:pointer;font-family:Barlow,sans-serif;">Letter Grade</button>'
+  + '<button id="nobs-btn-grade" onclick="nobsToggle(\'grade\')" style="font-size:11px;font-weight:700;padding:5px 14px;border-radius:999px;border:none;background:#1a6ef5;color:white;cursor:pointer;font-family:Barlow,sans-serif;">Letter grade</button>'
   + '<button id="nobs-btn-pct" onclick="nobsToggle(\'pct\')" style="font-size:11px;font-weight:700;padding:5px 14px;border-radius:999px;border:none;background:transparent;color:#3d5278;cursor:pointer;font-family:Barlow,sans-serif;">Percentage</button>'
   + '</div></div>'
   + '<div style="display:flex;gap:8px;align-items:center;margin-bottom:16px;flex-wrap:wrap;">'
@@ -35,7 +35,7 @@ var modalHTML = '<div id="nobs-modal-box" style="background:#f4f7ff;border-radiu
   + '<div style="margin-bottom:18px;">'
   + '<div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px;"><span style="font-size:13px;color:#3d5278;font-weight:600;">Order match rate</span><span style="font-size:38px;font-weight:700;color:#e67e22;">78%</span></div>'
   + '<div style="height:10px;background:rgba(26,110,245,0.1);border-radius:999px;overflow:hidden;margin-bottom:5px;"><div style="height:100%;border-radius:999px;background:#e67e22;width:78%;"></div></div>'
-  + '<div style="display:flex;justify-content:space-between;font-size:10px;color:#3d5278;"><span>0%</span><span style="color:#c0392b;">critical &lt;65%</span><span style="color:#e67e22;">review 65-90%</span><span style="color:#27ae60;">healthy &gt;90%</span></div>'
+  + '<div style="display:flex;justify-content:space-between;font-size:10px;color:#3d5278;"><span>0%</span><span style="color:#c0392b;">critical &lt;75%</span><span style="color:#e67e22;">review 75-90%</span><span style="color:#27ae60;">healthy 90%+</span></div>'
   + '</div></div>'
   + '<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px;">'
   + '<div style="background:white;border-radius:8px;padding:11px;border:1px solid rgba(26,110,245,0.12);"><div style="font-size:10px;color:#3d5278;margin-bottom:3px;font-weight:600;">Match rate</div><div style="font-size:17px;font-weight:700;color:#e67e22;">78%</div><div style="font-size:10px;color:#3d5278;margin-top:2px;">1,468 of 1,880</div></div>'
@@ -50,7 +50,7 @@ var modalHTML = '<div id="nobs-modal-box" style="background:#f4f7ff;border-radiu
   + '</div>'
   + '<div style="text-align:center;border-top:1px solid rgba(26,110,245,0.1);padding-top:18px;">'
   + '<p style="font-size:13px;color:#3d5278;margin-bottom:14px;line-height:1.5;">This is what your report could look like. Run the check with your own data and find out where you actually stand.</p>'
-  + '<a href="/ecommerce-data-audit/what-you-need" style="display:inline-block;background:#e87e0c;color:#ffffff;font-size:15px;font-weight:700;padding:13px 28px;border-radius:10px;border:none;cursor:pointer;font-family:Barlow,sans-serif;text-decoration:none;letter-spacing:0.01em;">Check My Data Now</a>'
+  + '<a href="/ecommerce-data-audit/what-you-need/" style="display:inline-block;background:#e87e0c;color:#ffffff;font-size:15px;font-weight:700;padding:13px 28px;border-radius:10px;border:none;cursor:pointer;font-family:Barlow,sans-serif;text-decoration:none;letter-spacing:0.01em;">Check my data now</a>'
   + '</div></div></div>';
 
 function nobsOpenModal() {

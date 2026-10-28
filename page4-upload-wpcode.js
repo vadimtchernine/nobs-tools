@@ -26,7 +26,7 @@ function handleFile(type, input) {
       if (parsed.dateRange) {
         ga4DateRange = parsed.dateRange;
         const dd = document.getElementById('date-detect');
-        document.getElementById('date-detect-text').textContent = 'Date range detected from GA4 file: ' + parsed.dateRange;
+        document.getElementById('date-detect-text').textContent = 'Date range detected from the GA4 file: ' + parsed.dateRange;
         dd.style.display = 'flex';
       }
     } else {
@@ -148,14 +148,14 @@ function runAnalysis() {
   const medianDiff = sortedDiffs.length > 0 ? sortedDiffs[Math.floor(sortedDiffs.length / 2)] : 0;
 
   let grade, gradeColor, gradeDesc;
-  if (matchRate >= 95) { grade = 'A'; gradeColor = '#1a7a3c'; gradeDesc = 'Excellent. Your GA4 ecommerce data is highly reliable. Minor gaps are expected and within normal range.'; }
-  else if (matchRate >= 90) { grade = 'A-'; gradeColor = '#1a7a3c'; gradeDesc = 'Very good. Normal data loss from ad blockers and browser privacy. Your data is reliable for reporting.'; }
-  else if (matchRate >= 85) { grade = 'B+'; gradeColor = '#27ae60'; gradeDesc = 'Good. Above average for most ecommerce properties. A few specific issues are worth investigating.'; }
-  else if (matchRate >= 80) { grade = 'B'; gradeColor = '#27ae60'; gradeDesc = 'Good overall but meaningful gaps exist. Some revenue reporting decisions should be made with caution.'; }
-  else if (matchRate >= 75) { grade = 'C+'; gradeColor = '#f0b429'; gradeDesc = 'Acceptable but notable blind spots. Budget and ROAS calculations are affected.'; }
-  else if (matchRate >= 65) { grade = 'C'; gradeColor = '#f0b429'; gradeDesc = 'Needs attention. Roughly 1 in 4 of your orders is invisible to GA4. Fix the issues below before trusting this data for decisions.'; }
-  else if (matchRate >= 55) { grade = 'D'; gradeColor = '#e67e22'; gradeDesc = 'Significant tracking problems. Do not use GA4 revenue data for budget or ROAS decisions until resolved.'; }
-  else { grade = 'F'; gradeColor = '#c0392b'; gradeDesc = 'Critical. GA4 is missing the majority of your orders. Your analytics setup needs immediate attention.'; }
+  if (matchRate >= 95) { grade = 'A'; gradeColor = '#1a7a3c'; gradeDesc = 'Your GA4 ecommerce data is reliable. The small gap left is normal and not worth chasing.'; }
+  else if (matchRate >= 90) { grade = 'A-'; gradeColor = '#1a7a3c'; gradeDesc = 'Your GA4 ecommerce data is in good shape. The gap is the usual loss from ad blockers and browser privacy, and you can report on it.'; }
+  else if (matchRate >= 85) { grade = 'B+'; gradeColor = '#27ae60'; gradeDesc = 'Your GA4 ecommerce data is mostly solid. It’s better than most stores I see, but a few issues are worth a look.'; }
+  else if (matchRate >= 80) { grade = 'B'; gradeColor = '#27ae60'; gradeDesc = 'Your GA4 ecommerce data has real gaps. Be careful basing revenue decisions on it until they’re fixed.'; }
+  else if (matchRate >= 75) { grade = 'C+'; gradeColor = '#f0b429'; gradeDesc = 'Your GA4 ecommerce data has blind spots you should know about. They’re big enough to throw off budget and ROAS calculations.'; }
+  else if (matchRate >= 65) { grade = 'C'; gradeColor = '#f0b429'; gradeDesc = 'Your GA4 ecommerce data needs attention. Roughly a quarter to a third of your orders never reach GA4. Fix the issues below before you trust it for decisions.'; }
+  else if (matchRate >= 55) { grade = 'D'; gradeColor = '#e67e22'; gradeDesc = 'Your GA4 tracking has serious problems. Don’t use its revenue numbers for budget or ROAS decisions until they’re fixed.'; }
+  else { grade = 'F'; gradeColor = '#c0392b'; gradeDesc = 'GA4 is missing close to half of your orders, or more. Fix the tracking before you use any of this data.'; }
 
   if (revVariance > 15 && !(Math.abs(medianDiff) < 10)) {
     if (grade === 'A') grade = 'A-';
@@ -169,7 +169,7 @@ function runAnalysis() {
   const callouts = [];
   if (shopOnly > 0) {
     const pct = Math.round(shopOnly / totalShopify * 100);
-    callouts.push({ type: 'danger', icon: 'ti-alert-circle', text: shopOnly.toLocaleString() + ' Shopify orders (' + pct + '%) have no matching GA4 transaction. These are real sales that GA4 never captured. This is the most important issue to investigate.' });
+    callouts.push({ type: 'danger', icon: 'ti-alert-circle', text: shopOnly.toLocaleString() + ' Shopify orders (' + pct + '%) have no matching GA4 transaction. Some gap is normal (consent, ad blockers). If it’s approaching half your orders, start here.' });
   }
   if (Math.abs(medianDiff) > 0.5 && Math.abs(medianDiff) < 20) {
     callouts.push({ type: 'warn', icon: 'ti-receipt', text: 'The median revenue difference on matched orders is $' + Math.abs(medianDiff).toFixed(2) + '. GA4 is likely capturing subtotal only while Shopify includes shipping costs. Confirm what your purchase event sends as the revenue value.' });
@@ -180,7 +180,7 @@ function runAnalysis() {
     callouts.push({ type: 'info', icon: 'ti-cpu', text: 'GA4 behavioral modeling is active. Some transactions in your report are estimated by Google to fill consent-related gaps, not directly observed. Your actual tag coverage may be lower than the match rate suggests.' });
   }
   if (ga4Only > 10) {
-    callouts.push({ type: 'info', icon: 'ti-arrows-exchange', text: ga4Only + ' transactions appear in GA4 but not in Shopify. Common causes: cancelled orders still counted in GA4, test orders, or a date range mismatch between exports.' });
+    callouts.push({ type: 'info', icon: 'ti-arrows-exchange', text: ga4Only + ' transactions appear in GA4 but not in Shopify. Common causes: canceled orders still counted in GA4, test orders, or a date range mismatch between exports.' });
   }
   if (zeroRevCount > 5) {
     callouts.push({ type: 'warn', icon: 'ti-currency-dollar-off', text: zeroRevCount + ' GA4 transactions recorded $0 in revenue. These are likely tag misfires where a purchase event fired without a revenue value attached.' });
@@ -194,7 +194,7 @@ function runAnalysis() {
   };
 
   sessionStorage.setItem('nobsCheckerResults', JSON.stringify(results));
-  window.location.href = '/ecommerce-data-audit/results';
+  window.location.href = '/ecommerce-data-audit/results/';
 }
 
 updateRunBtn();
